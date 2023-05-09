@@ -1,4 +1,5 @@
 import "../pocetna.css";
+import { useState,useEffect } from "react";
 
 const SviTurniri = ({ }) => {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -19,16 +20,70 @@ const SviTurniri = ({ }) => {
                 }
             }
         }
+    } var bi=23;
+    let bi1=34;
+    let bi2=39;
+    let bi3=57;
+    let bi4=5;
+
+    function dodaj(e){
+        bi=[++bi]
+        console.log(bi);
+        
     }
+    console.log(bi);
+
+    function sortiraj() {
+        console.log("Pozvana");
+        var table, rows, s, i, a, b, shouldS;
+        table = document.getElementById("tabela");
+        s = true;
+
+        while (s) {
+            s = false;
+            rows = table.rows;
+            for (i = 1; i < (rows.length - 1); i++) {
+                shouldS = false;
+                a = rows[i].getElementsByTagName("td")[4];
+                b = rows[i + 1].getElementsByTagName("td")[4];
+                if (a.innerHTML.toLowerCase() > b.innerHTML.toLowerCase()) {
+                    shouldS = true;
+                    break;
+                }
+            }
+            if (shouldS) {
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                s = true;
+            }
+        }
+    }
+
+    {/*let [bi, setBi]=useState({
+        bi:0
+    });
+    useEffect(()=>{++bi});
+    let [bi1, setBi1]=useState({
+        bi:16
+    });useEffect(()=>{++bi});
+    let [bi2, setBi2]=useState({
+        bi:56
+    });useEffect(()=>{++bi});
+    let [bi3, setBi3]=useState({
+        bi:205
+    });useEffect(()=>{++bi});
+    let [bi4, setBi4]=useState({
+        bi:0
+    });useEffect(()=>{++bi}); */}
     return (
-<>
+   <>
         <h1>Predstojeci turniri</h1>
     <br></br>
     <br></br>
 <input type="text" id="ulaz" onKeyUp={nadji} placeholder="Pretraži turnire po nazivu" ></input>
 <br>
 </br>
-
+<br></br><br></br><br></br>
+<button onClick={sortiraj}>Sortiraj turnire po broju igraca</button>
 <div className="tabelarez" >
 <table id="tabela" class="tabela" border="3">
     <thead className ="zaglavlje">
@@ -49,12 +104,13 @@ const SviTurniri = ({ }) => {
                     <td className="red">Novosadski sajam</td>
                     <td className="red">rejtingovan</td>
                     <td className="red">2h+30min</td>
-                    <td className="red">153</td>
+                    <td className="red">{bi}</td>
                     
                     <td >
                         <label class="oznaci">
-                        <input type="radio" name="cekiranje"></input>
+                        <button name="cekiranje" onClick={dodaj}></button>
                                     <span class="checkmark"></span>
+                                    
                         </label>
                     </td>
 
@@ -65,7 +121,7 @@ const SviTurniri = ({ }) => {
                     <td className="red">SK Vidikovac</td>
                     <td className="red">kategorni</td>
                     <td className="red">90min</td>
-                    <td className="red">20</td>
+                    <td className="red">{bi1}</td>
                     
                     <td >
                         <label class="oznaci">
@@ -80,7 +136,7 @@ const SviTurniri = ({ }) => {
                     <td className="red">Restoran Balasevic</td>
                     <td className="red">rejtingovan</td>
                     <td className="red">2h</td>
-                    <td className="red">78</td>
+                    <td className="red">{bi2}</td>
                     
                     <td >
                         <label class="oznaci">
@@ -95,7 +151,7 @@ const SviTurniri = ({ }) => {
                     <td className="red">SK Kralj</td>
                     <td className="red">nerejtingovan</td>
                     <td className="red">5min</td>
-                    <td className="red">18</td>
+                    <td className="red">{bi3}</td>
                     
                     <td >
                         <label class="oznaci">
@@ -110,7 +166,7 @@ const SviTurniri = ({ }) => {
                     <td className="red">Batajnica</td>
                     <td className="red">nerejtingovan</td>
                     <td className="red">20min</td>
-                    <td className="red">21</td>
+                    <td className="red">{bi4}</td>
                     
                     <td >
                         <label class="oznaci">
@@ -155,6 +211,7 @@ const SviTurniri = ({ }) => {
     </table>
 
 </div>
+
 </>
     )
 }
